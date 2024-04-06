@@ -1,4 +1,4 @@
-import {Avatar, Button, Select} from "antd";
+import {Avatar, Button, Image, Pagination, Select} from "antd";
 import {
     LoginOutlined,
     PlusOutlined, RightOutlined, SearchOutlined, StarFilled,
@@ -48,13 +48,117 @@ const interestArticles = [
     {label: "Kinh nghiem thue phong tro cho sinh vien", value: 1},
 ]
 
+const newArticle = [
+    {
+        url: "https://i-connect.com.vn/data/news/7046/anh-2-phong-tro-rong.jpg",
+        label: "Cho thue phong tro 35m2",
+        time: "2h truoc",
+        price: "30tr/thang"
+    },
+    {
+        url: "https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/04/06/z5320715692963-c1ac51bde8571ef1d73a492f1b71bdb3_1712366527.jpg",
+        label: "Cho thue phong tro 35m2",
+        time: "2h truoc",
+        price: "30tr/thang"
+    },
+    {
+        url: "https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/04/06/img-0857_1712365791.jpg",
+        label: "Cho thue phong tro 35m2",
+        time: "2h truoc",
+        price: "30tr/thang"
+    },
+    {
+        url: "https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/04/06/289340394-5561658193845715-8729190059353829299-n_1712365644.jpg",
+        label: "Cho thue phong tro 35m2",
+        time: "2h truoc",
+        price: "30tr/thang"
+    },
+    {
+        url: "https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/04/06/z5320512243144-212f9ebb878af8ee9c29f0ac7a50fe5b_1712360968.jpg",
+        label: "Cho thue phong tro 35m2",
+        time: "2h truoc",
+        price: "30tr/thang"
+    },
+    {
+        url: "https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/04/06/z5320512488685-b43aedebb94047b9a92fb5d828994a51_1712360602.jpg",
+        label: "Cho thue phong tro 35m2",
+        time: "2h truoc",
+        price: "30tr/thang"
+    },
+    {
+        url: "https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/04/06/c6e3902b-4c3e-4d36-8f3a-7e32500bbe23_1712338549.jpg",
+        label: "Cho thue phong tro 35m2",
+        time: "2h truoc",
+        price: "30tr/thang"
+    },
+    {
+        url: "https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/04/06/z5320278213608-5a2148ce2ae0d86be8346864985f3603_1712337229.jpg",
+        label: "Cho thue phong tro 35m2",
+        time: "2h truoc",
+        price: "30tr/thang"
+    },
+]
+
+const houseInfoLst = [
+    {
+        url: "https://i-connect.com.vn/data/news/7046/anh-2-phong-tro-rong.jpg",
+        label: "Cho thue phong tro 35m2",
+        time: "2h truoc",
+        price: "30tr/thang"
+    },
+    {
+        url: "https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/04/06/z5320715692963-c1ac51bde8571ef1d73a492f1b71bdb3_1712366527.jpg",
+        label: "Cho thue phong tro 35m2",
+        time: "2h truoc",
+        price: "30tr/thang"
+    },
+    {
+        url: "https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/04/06/img-0857_1712365791.jpg",
+        label: "Cho thue phong tro 35m2",
+        time: "2h truoc",
+        price: "30tr/thang"
+    },
+    {
+        url: "https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/04/06/289340394-5561658193845715-8729190059353829299-n_1712365644.jpg",
+        label: "Cho thue phong tro 35m2",
+        time: "2h truoc",
+        price: "30tr/thang"
+    },
+    {
+        url: "https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/04/06/z5320512243144-212f9ebb878af8ee9c29f0ac7a50fe5b_1712360968.jpg",
+        label: "Cho thue phong tro 35m2",
+        time: "2h truoc",
+        price: "30tr/thang"
+    },
+    {
+        url: "https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/04/06/z5320512488685-b43aedebb94047b9a92fb5d828994a51_1712360602.jpg",
+        label: "Cho thue phong tro 35m2",
+        time: "2h truoc",
+        price: "30tr/thang"
+    },
+    {
+        url: "https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/04/06/c6e3902b-4c3e-4d36-8f3a-7e32500bbe23_1712338549.jpg",
+        label: "Cho thue phong tro 35m2",
+        time: "2h truoc",
+        price: "30tr/thang"
+    },
+    {
+        url: "https://pt123.cdn.static123.com/images/thumbs/450x300/fit/2024/04/06/z5320278213608-5a2148ce2ae0d86be8346864985f3603_1712337229.jpg",
+        label: "Cho thue phong tro 35m2",
+        time: "2h truoc",
+        price: "30tr/thang"
+    },
+]
+
+
 
 function HomePage() {
 
-    const renderHouseInfo = () => (
+    const renderHouseInfo = (houseInfo) => (
         <div className="flex mt-2 border-0 border-t border-slate-200 p-2">
-            <img className="w-72 h-60 rounded"
-                 src="https://i-connect.com.vn/data/news/7046/anh-2-phong-tro-rong.jpg" alt=""/>
+            <div>            <Image width={240} height={240} className="rounded"
+                                    src={houseInfo.url} alt=""/></div>
+
             <div className="ml-2">
                 <div className="text-sm font-bold uppercase text-[#E13427]">
                     <StarFilled style={{color: 'yellow', width: 16, height: 16}}/>
@@ -125,6 +229,24 @@ function HomePage() {
         </div>
     )
 
+    const renderNewArticle = (title, articles) => (
+        <div className="p-4 mb-4 border border-slate-200 rounded-xl">
+            <div className="font-bold text-xl pb-4">{title}</div>
+            {articles?.map((article, idx) => (
+                <div key={idx} className="flex p-2">
+                    <div><img className="w-[80px] h-[65px] rounded" alt="" src={article?.url}/></div>
+                    <div className="w-full pl-2">
+                        <div className="text-blue-600">{article?.label}</div>
+                        <div className="flex justify-between pt-2">
+                            <div className="text-[#16c784]">{article?.price}</div>
+                            <div className="text-slate-400">{article?.time}</div>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    )
+
     return (
         <div className="w-[1100px]">
             {/*  Header  */}
@@ -165,7 +287,7 @@ function HomePage() {
                     <div>
                         <div className="text-base font-bold">Tổng 122.423 kết quả</div>
                         <div className="flex">
-                        <div>Sap xep: </div>
+                            <div>Sap xep:</div>
                             <Button type="secondary" className="bg-[#E2E8F0] ml-2" size="small">Mac dinh</Button>
                             <Button type="secondary" className="bg-[#E2E8F0] mx-2" size="small">Moi nhat</Button>
                             <Button type="secondary" className="bg-[#E2E8F0]" size="small">Co video</Button>
@@ -173,12 +295,7 @@ function HomePage() {
                     </div>
 
                     {/* Thong tin phong tro */}
-                    {renderHouseInfo()}
-                    {renderHouseInfo()}
-                    {renderHouseInfo()}
-                    {renderHouseInfo()}
-                    {renderHouseInfo()}
-                    {renderHouseInfo()}
+                    {houseInfoLst?.map((houseInfo) => renderHouseInfo(houseInfo))}
 
                 </div>
 
@@ -188,8 +305,13 @@ function HomePage() {
 
                     {renderFilterFeed('Xem theo dien thich', leftAreaFilter, rightAreaFilter)}
 
+                    {renderNewArticle('Tin moi Dang', newArticle)}
+
+
                     {renderNewFeed('Bai viet moi', newArticles)}
                     {renderNewFeed('Co the ban se quan tam', interestArticles)}
+
+
 
                 </div>
             </div>
